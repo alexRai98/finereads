@@ -11,7 +11,7 @@ get "/" do
 end
 
 get "/search" do #recibe el get request con query parameters - form
-  ""
+  "search"
 end
 
 get "/books" do
