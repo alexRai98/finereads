@@ -1,5 +1,3 @@
-*.pstore
-
 *.gem
 *.rbc
 /.config
@@ -59,3 +57,5 @@ build-iPhoneSimulator/
 
 .idea
 .env
+
+*.pstore

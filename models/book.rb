@@ -1,8 +1,8 @@
 require "lazyrecord"
 require "http"
+require_relative "../helpers/api_helper"
 
 class Book < LazyRecord
-  @@endpoint = "https://www.googleapis.com/books/v1/volumes"
   attr_reader :id, :date
   attr_accessor :status, :notes
 
@@ -11,21 +11,18 @@ class Book < LazyRecord
     @status = status
     @notes = notes
     @date = Time.now
-  end
-
-  def external_book
-    HTTP.headers(accept: "application/json").get("#{@@endpoint}/#{id}").parse
+    @external_book = ApiHelper.get_book_by_id(id)
   end
 
   def img_url
-    external_book['volumeInfo']['imageLinks']['thumbnail']
+    @external_book['volumeInfo']['imageLinks']['thumbnail']
   end
 
   def title
-    external_book['volumeInfo']['title']
+    @external_book['volumeInfo']['title']
   end
 
   def authors
-    external_book['volumeInfo']['authors']
+    @external_book['volumeInfo']['authors']
   end
 end
