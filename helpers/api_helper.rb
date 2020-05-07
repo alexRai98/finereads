@@ -25,4 +25,12 @@ module ApiHelper
 
     result[0]
   end
+
+  def get_book_by_id(id)
+    JSON.parse(
+      HTTP.headers(:accept => "application/json")
+        .get("#{BASE_URL}/volumes/#{id}")
+        .body
+    )
+  end
 end
