@@ -12,7 +12,6 @@
 
 .search h1{
   text-align: center;
-  font-family: Nunito;
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -35,7 +34,6 @@
 
 .search .form .input{
   border: none;
-  font-family: Nunito;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

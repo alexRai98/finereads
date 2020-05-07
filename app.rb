@@ -1,7 +1,7 @@
 # myapp.rb
 require "sinatra"
 require "sinatra/reloader" if development?
-require_relative "models/books"
+require_relative "models/book"
 require_relative "helpers/api_helper"
 require_relative "helpers/search_helper"
 require "json"
