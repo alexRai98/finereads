@@ -7,7 +7,7 @@ require_relative "helpers/api_helper"
 helpers ApiHelper
 
 get "/" do
-  'Hello world!'
+  erb :index, :layout => false
 end
 
 get "/search" do #recibe el get request con query parameters - form
