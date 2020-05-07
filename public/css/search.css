@@ -16,8 +16,6 @@
   font-weight: 600;
   font-size: 24px;
   line-height: 33px;
-  /* identical to box height */
-
 
   color: #000000;
 
@@ -41,4 +39,9 @@
 
   color: #4A5568;
   padding: 0px 12px;
+}
+
+.search .no-result{
+  margin-top: 40px;
+  text-align: center;
 }
