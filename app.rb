@@ -8,7 +8,7 @@ require "json"
 helpers ApiHelper
 
 get "/" do
-  'Hello world!'
+  erb :index, :layout => false
 end
 
 get "/search" do #recibe el get request con query parameters - form
