@@ -17,7 +17,8 @@ get "/search" do #recibe el get request con query parameters - form
 end
 
 get "/books" do
-  erb(:books)
+  books = Books.all
+  erb(:books, locals: { books: books })
 end
 
 get "/books/:book_id" do
