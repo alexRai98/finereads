@@ -1,6 +1,6 @@
 require "lazyrecord"
 
-class Books < LazyRecord
+class Book < LazyRecord
   attr_reader :id
   attr_accessor :status, :notes
 
@@ -8,6 +8,6 @@ class Books < LazyRecord
     @id = id
     @status = status
     @notes = notes
+    @date = Time.now
   end
-
 end
