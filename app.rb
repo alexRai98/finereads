@@ -31,3 +31,7 @@ end
 put "/books/:book_id/edit" do
   ""
 end
+get "/books/:id" do
+  
+
+end
