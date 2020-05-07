@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+.books-page {
+  font-family: "Nunito";
+}
+.books-page__title {
+  margin-bottom: 15px;
+  font-size: 36px;
+  line-height: 49px;
+  color: #000000;
+}
+.books-table {
+  border-collapse: collapse;
+}
+.books-table__row th,
+.books-table__row td {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(113, 128, 150, 0.8);
+  text-align: center;
+}
