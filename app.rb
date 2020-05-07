@@ -1,7 +1,7 @@
 # myapp.rb
 require "sinatra"
 require "sinatra/reloader" if development?
-require_relative "models/books"
+require_relative "models/book"
 require_relative "helpers/api_helper"
 require "json"
 
@@ -17,7 +17,7 @@ get "/search" do #recibe el get request con query parameters - form
 end
 
 get "/books" do
-  books = Books.all
+  books = Book.all
   erb(:books, locals: { books: books })
 end
 
