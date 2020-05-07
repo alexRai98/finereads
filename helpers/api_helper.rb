@@ -5,20 +5,24 @@ module ApiHelper
   extend self
 
   BASE_URL = "https://www.googleapis.com/books/v1"
-  BOOK_PER_PAGES = 25 #Max 40
+  BOOK_PER_PAGES = 40 #Max 40
 
-  def get_books(text)
-    response1 = JSON.parse(
-      HTTP.headers(:accept => "application/json")
-        .get("#{BASE_URL}/volumes", :params => {:q => text, :startIndex => "0", :maxResults => BOOK_PER_PAGES})
-        .body
-    )
-    response2 = JSON.parse(
-      HTTP.headers(:accept => "application/json")
-        .get("#{BASE_URL}/volumes", :params => {:q => text, :startIndex => "1", :maxResults => BOOK_PER_PAGES})
-        .body
-    )
-    (response1["items"] + response2["items"])
-      .take(48)
+  def get_books(text, count: 8)
+    result = (count/BOOK_PER_PAGES.to_f)
+      .ceil
+      .times
+      .inject([[], count]) do |(resp, remaining), index|
+        num_books = (remaining <= BOOK_PER_PAGES ? remaining : BOOK_PER_PAGES)
+        
+        response = JSON.parse(
+          HTTP.headers(:accept => "application/json")
+            .get("#{BASE_URL}/volumes", :params => {:q => text, :startIndex => index, :maxResults => num_books})
+            .body
+        )
+
+        [resp + response["items"], remaining - num_books]
+      end
+
+    result[0]
   end
 end
