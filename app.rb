@@ -8,7 +8,7 @@ require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
 
 helpers ApiHelper
-helpers EditHelper
+helpers BookHelper
 helpers SearchHelper
 
 use Rack::MethodOverride
@@ -44,9 +44,7 @@ put "/books/:book_id/edit" do
   book.save
   redirect to("/books/#{id}/edit")
 end
-get "/form" do
-  erb :f_prueba
-end
+
 post "/books/:id" do 
   @book = Book.find(params[:id])
   erb :book_detail
