@@ -18,13 +18,14 @@ get "/" do
 end
 
 get "/search" do #recibe el get request con query parameters - form
-  @query = params[:query]
   @specific_options = {"all" => "All", "subject" => "In subject", "intitle" => "In Title", "inauthor" => "In Author", "inpublisher" => "In Publisher", "isbn" => "Is ISBN"}
   @specific = process_param(params[:specific], avaliable_options: @specific_options.keys)
+  
   @more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
   count = @more ? 48 : 8
 
   my_books = Book.all
+  @query = params[:query]
   @books = process_param(@query) do |query_option| 
     mark_my_books(get_books(query_option, count: count, specific: @specific), my_books)
   end
