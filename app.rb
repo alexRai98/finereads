@@ -63,7 +63,4 @@ get "/books/:id" do
   erb :book_detail, locals: { book: @book}
 end
 
-delete "/books/:id" do 
-  @book = Book.delete(params[:id])
-  redirect url("/books")
-end
+
