@@ -1,1 +1,17 @@
-<p>not empty result</p>
+<div class="books">
+  <% books.each do |book| %>
+    <div class="book">
+      <img src="<%= book['volumeInfo']['imageLinks']['thumbnail']%>" alt="">
+      <form action="/books" method="post">
+        <input type="hidden" name="id" value="<%= book["id"] %>">
+        <input type="hidden" name="status" value="want_to_read">
+        <input class="want_read" type="submit" value="Want to Read">
+      </form>
+      <form action="/books" method="post">
+        <input type="hidden" name="id" value="<%= book["id"] %>">
+        <input type="hidden" name="status" value="read">
+        <input class="read" type="submit" value="Mark as Read">
+      </form>
+    </div>
+  <% end %>
+</div>
