@@ -37,4 +37,8 @@ class Book < LazyRecord
   def price_buy_link
     @external_book['saleInfo']["buyLink"]
   end
+
+  def description
+    @external_book['volumeInfo']['description']
+  end
 end

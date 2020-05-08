@@ -1,12 +1,14 @@
 # myapp.rb
+require "json"
 require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "models/book"
 require_relative "helpers/api_helper"
+require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
-require "json"
 
 helpers ApiHelper
+helpers EditHelper
 helpers SearchHelper
 
 use Rack::MethodOverride
@@ -22,7 +24,7 @@ end
 
 get "/books" do
   books = Book.all
-  erb(:books, locals: { books: books })
+  erb :books, locals: { books: books }
 end
 
 get "/books/:book_id" do
@@ -30,11 +32,17 @@ get "/books/:book_id" do
 end
 
 get "/books/:book_id/edit" do
-  ""
+  book = Book.find(params[:book_id])
+  erb :book_edit, locals: { book: book }
 end
 
 put "/books/:book_id/edit" do
-  ""
+  id = params[:book_id]
+  book = Book.find(id)
+  book.status = params[:status]
+  book.notes = params[:notes]
+  book.save
+  redirect to("/books/#{id}/edit")
 end
 get "/form" do
   erb :f_prueba

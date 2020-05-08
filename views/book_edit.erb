@@ -1,0 +1,23 @@
+<div class="edit-page">
+  <% if book %>
+    <figure class="edit-page__figure">
+      <img src="<%= book.img_url %>" alt="book">
+    </figure>
+
+    <div class="book-info">
+      <div class="book-info__title"><%= book.title %></div>
+      <div class="book-info__authors">by <%= book.authors.join(", ") %></div>
+
+      <form method="POST" action="/books/<%= book.id %>/edit" class="edit-page__form">
+        <input type="hidden" name="_method" value="PUT">
+        <label class="form-control" for="edit-form-status">Reading Status</label>
+        <%= show_select(book.status) %>
+        <label class="form-control" for="edit-form-notes">Notes</label>
+        <textarea class="form-control" name="notes" id="edit-form-notes" rows="10"><%= book.notes %></textarea>
+        <button class="form-submit">Save</button>
+      </form>
+    </div>
+  <% else %>
+    <p>Book not found.</p>
+  <% end %>
+</div>
