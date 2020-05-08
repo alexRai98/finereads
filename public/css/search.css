@@ -75,7 +75,7 @@
   margin-top: 16px;
 }
 
-.search .books .book .want_read{
+.want_read{
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -89,7 +89,7 @@
   cursor: pointer;
 }
 
-.search .books .book .read{
+.read{
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

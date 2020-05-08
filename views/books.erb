@@ -27,7 +27,9 @@
         
             </td>
             <td class="books-table__book-data">
-              <%= book.authors.join(', ') %>
+              <%if book.authors%>
+                <%= book.authors.join(", ") %>
+              <%end%>
             </td>
             <td class="books-table__book-data">
               <%= book.status %>

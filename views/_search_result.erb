@@ -7,16 +7,7 @@
         <img class="thumbnail" src="/images/no_cover_thumb.png" alt="">
       <% end %>
       <% if book["my_book_status"].nil? %>
-        <form action="/books" method="post">
-          <input type="hidden" name="id" value="<%= book["id"] %>">
-          <input type="hidden" name="status" value="want to read">
-          <input class="want_read" type="submit" value="Want to Read">
-        </form>
-        <form action="/books" method="post">
-          <input type="hidden" name="id" value="<%= book["id"] %>">
-          <input type="hidden" name="status" value="read">
-          <input class="read" type="submit" value="Mark as Read">
-        </form>
+        <%=render_buttons_read_search(book)%>
       <% else %>
         <a class="status" href="/books/<%= book["id"] %>">
           <p><%= book["my_book_status"].capitalize %></p>

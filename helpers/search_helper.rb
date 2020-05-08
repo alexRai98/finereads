@@ -35,4 +35,7 @@ module SearchHelper
       erb("_search_result".to_sym, locals: {books: books, more: more})
     end
   end
+  def render_buttons_read_search(book)
+    erb(:_buttons_search,  locals: {book: book})
+  end
 end
