@@ -1,11 +1,13 @@
 <section class="detail-book">
-    <img class="book__img" src="<%= @book%>" alt="">
+    <img class="book__img" src=" <%= @book.img_url%>" alt="">
     <article class="book-information"> 
-        <h1 class="book__title"> </h1>
-        <span class="book__author" >by </span>
-        <p class="book__description"> </p>
-        <button class="book_buy"> Buy for 
+        <h1 class="book__title"><%= @book.title%> </h1>
+        <span class="book__author" >by <%=@book.authors.join(",")%> </span>
+        <p class="book__description"><%=@book.description%> </p>
+        <a class="book-btn__buy" href="<%= @book.price_buy_link%> " target="back" >
+            Buy for <%=@book.price_amount%> <%= @book.price_country%>
             <img src="/images/buy.svg" alt="buy">
-        </button>
+        </a>
     </article>
 </section>
+

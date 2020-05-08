@@ -9,6 +9,7 @@ require "json"
 helpers ApiHelper
 helpers SearchHelper
 
+use Rack::MethodOverride
 get "/" do
   erb :index, :layout => false
 end
@@ -38,11 +39,11 @@ end
 get "/form" do
   erb :f_prueba
 end
-post "/books/id" do 
+post "/books/:id" do 
   @book = Book.find(params[:id])
-
   erb :book_detail
 end
-get "/books/details" do
-  erb :book_detail, :layout => true
+delete "/books/:id" do 
+  @book = Book.delete(params[:id])
+  redirect url("/")
 end

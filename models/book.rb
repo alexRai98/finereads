@@ -23,6 +23,18 @@ class Book < LazyRecord
   end
 
   def authors
-    @external_book['volumeInfo']['authors']
+    authors = @external_book['volumeInfo']['authors']
+  end
+  def description
+    @external_book['volumeInfo']['description'].to_s.gsub(/<\/?\w+>/,"")
+  end
+  def price_country
+    @external_book['saleInfo']["listPrice"]["currencyCode"]
+  end
+  def price_amount
+    @external_book['saleInfo']["listPrice"]["amount"]
+  end
+  def price_buy_link
+    @external_book['saleInfo']["buyLink"]
   end
 end
