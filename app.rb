@@ -6,10 +6,12 @@ require_relative "models/book"
 require_relative "helpers/api_helper"
 require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
+require_relative "helpers/book_helper"
 
 helpers ApiHelper
-helpers BookHelper
+helpers EditHelper
 helpers SearchHelper
+helpers BookHelper
 
 use Rack::MethodOverride
 get "/" do
@@ -46,8 +48,11 @@ put "/books/:book_id/edit" do
 end
 
 post "/books/:id" do 
+  redirect url("/books/#{params[:id]}")
+end
+get "/books/:id" do 
   @book = Book.find(params[:id])
-  erb :book_detail
+  erb :book_detail, locals{ book: @book}
 end
 delete "/books/:id" do 
   @book = Book.delete(params[:id])
