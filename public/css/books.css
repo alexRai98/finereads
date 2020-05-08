@@ -35,10 +35,10 @@
 }
 .books-table__heading:nth-child(4),
 .books-table__heading:nth-child(5) {
-  width: 15%;
+  width: 14%;
 }
 .books-table__heading:last-child {
-  width: 5%;
+  width: 7%;
 }
 .books-table__book-data {
   color: #1A202C;
@@ -53,6 +53,18 @@
   color: #ED8936;
   font-size: 14px;
   line-height: 19px;
+}
+.books-table__delete-form {
+  display: inline-block;
+}
+.books-table__delete-button {
+  display: inline-block;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 0;
+}
+.books-table__delete-button:hover {
+  cursor: pointer;
 }
 /* EDIT PAGE */
 .edit-page {
