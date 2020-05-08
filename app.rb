@@ -18,9 +18,9 @@ get "/" do
 end
 
 get "/search" do #recibe el get request con query parameters - form
-  p query = params[:query]
+  query = params[:query]
   books = (query.nil? || query=="") ? nil : get_books(query)
-  erb :search, locals: {books: books}
+  erb :search, locals: {books: books, query: query}
 end
 
 get "/books" do
@@ -28,12 +28,19 @@ get "/books" do
   erb :books, locals: { books: books }
 end
 
-
 delete "/books/:book_id" do
   id = params[:book_id]
   Book.delete(id)
   redirect to("/books")
 end
+
+post "/books" do
+  id = params[:id]
+  status = params[:status]
+  Book.create(id: params[:id], status: status)
+  redirect url("/books/#{id}")
+end
+
 
 get "/books/:book_id/edit" do
   id = params[:book_id]
