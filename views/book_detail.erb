@@ -1,8 +1,18 @@
 <section class="detail-book">
-    <img class="book__img" src=" <%= book.img_url%>" alt="">
-    <article class="book-information"> 
+    <figure class="detail-book__figure book_img">
+      <img class="detail-book__image" src="<%= book.img_url%>" alt="">
+      <%if find %>
+        <%= refactor_detail_figcaption(book)%>
+      <%else%>
+        <%= refactor_detail_btn_add_list(book)%>
+      <%end%>
+    </figure>
+
+    <article class="book-information">
         <h1 class="book__title"><%= book.title%> </h1>
-        <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+        <%if book.authors%>
+          <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+        <%end%>
         <p class="book__description"><%=book.description%> </p>
         <%if book.price%>
             <a class="book-btn__buy" href="<%= book.price_buy_link%> " target="back" >

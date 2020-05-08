@@ -4,13 +4,14 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "models/book"
 require_relative "helpers/api_helper"
-require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
 require_relative "helpers/book_helper"
+require_relative "helpers/detail_helper"
 
 helpers ApiHelper
 helpers SearchHelper
 helpers BookHelper
+helpers DetailHelper
 
 use Rack::MethodOverride
 get "/" do
@@ -49,6 +50,12 @@ post "/books" do
   Book.create(id: params[:id], status: status)
   redirect url("/books/#{id}/edit")
 end
+post "/books/add_detail" do
+  id = params[:id]
+  status = params[:status]
+  Book.create(id: params[:id], status: status)
+  redirect url("/books")
+end
 
 get "/books/:book_id/edit" do
   id = params[:book_id]
@@ -67,11 +74,13 @@ end
 
 
 get "/books/:id" do 
-  @book = Book.find(params[:id])
-  erb :book_detail, locals: { book: @book}
+  book = Book.find(params[:id])
+  if book
+    erb :book_detail, locals: { book: book, find: true}
+  else
+    book = Book.new(id: params[:id],status: nil)
+    erb :book_detail, locals: {book: book,find: false}
+  end
 end
 
-delete "/books/:id" do 
-  @book = Book.delete(params[:id])
-  redirect url("/books")
-end
+

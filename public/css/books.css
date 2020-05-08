@@ -11,6 +11,7 @@
   color: #000000;
 }
 .books-table {
+  margin: auto;
   border-collapse: collapse;
 }
 .books-table__row th,
