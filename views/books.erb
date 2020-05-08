@@ -22,7 +22,9 @@
               <img class="books-table__book-image" src="<%= book.img_url %>" alt="">
             </td>
             <td class="books-table__book-title">
-              <%= book.title %>
+          
+              <a type="submit" href="/books/<%= book.id%>"> <%= book.title %> </a>
+        
             </td>
             <td class="books-table__book-data">
               <%= book.authors.join(', ') %>
@@ -37,7 +39,7 @@
               <a href="/books/<%= book.id %>/edit">
                 <img src="/images/edit.png" alt="edit book">
               </a>
-              <form class="books-table__delete-form" method="POST" action="/books/<%= book.id %>">
+              <form class="books-table__delete-form" method="POST" action="<%=book_delete(book)%>">
                 <input type="hidden" name="_method" value="DELETE">
                 <button class="books-table__delete-button" type="submit">
                   <img src="/images/delete.png" alt="delete book">

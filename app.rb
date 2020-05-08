@@ -9,7 +9,6 @@ require_relative "helpers/search_helper"
 require_relative "helpers/book_helper"
 
 helpers ApiHelper
-helpers EditHelper
 helpers SearchHelper
 helpers BookHelper
 
@@ -29,9 +28,6 @@ get "/books" do
   erb :books, locals: { books: books }
 end
 
-get "/books/:book_id" do
-  ""
-end
 
 delete "/books/:book_id" do
   id = params[:book_id]
@@ -54,14 +50,13 @@ put "/books/:book_id/edit" do
   redirect to("/books")
 end
 
-post "/books/:id" do 
-  redirect url("/books/#{params[:id]}")
-end
+
 get "/books/:id" do 
   @book = Book.find(params[:id])
-  erb :book_detail, locals{ book: @book}
+  erb :book_detail, locals: { book: @book}
 end
+
 delete "/books/:id" do 
   @book = Book.delete(params[:id])
-  redirect url("/")
+  redirect url("/books")
 end

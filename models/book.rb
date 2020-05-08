@@ -25,20 +25,24 @@ class Book < LazyRecord
   def authors
     authors = @external_book['volumeInfo']['authors']
   end
+
   def description
     @external_book['volumeInfo']['description'].to_s.gsub(/<\/?\w+>/,"")
   end
-  def price_country
-    @external_book['saleInfo']["listPrice"]["currencyCode"]
+  
+  def price
+    sale_info =@external_book['saleInfo']
+    if sale_info["saleability"] == "FOR_SALE"
+      currency =sale_info["listPrice"]["currencyCode"]
+      value = sale_info["listPrice"]["amount"]
+      "#{currency} #{value}"
+    else
+      nil
+    end
   end
-  def price_amount
-    @external_book['saleInfo']["listPrice"]["amount"]
-  end
+
   def price_buy_link
     @external_book['saleInfo']["buyLink"]
   end
 
-  def description
-    @external_book['volumeInfo']['description']
-  end
 end

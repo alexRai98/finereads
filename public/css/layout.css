@@ -40,6 +40,7 @@ a{
     font-size: 30px;
     font-weight: 200;
     margin-top: 13px;
+    color: #000000;
 }
 .navbar-menu{
     display: flex;
