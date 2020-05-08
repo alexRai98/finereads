@@ -4,10 +4,12 @@
         <h1 class="book__title"><%= book.title%> </h1>
         <span class="book__author" >by <%=book.authors.join(", ")%> </span>
         <p class="book__description"><%=book.description%> </p>
-        <a class="book-btn__buy" href="<%= book.price_buy_link%> " target="back" >
-            Buy for <%=book.price%>
-            <img src="/images/buy.svg" alt="buy">
-        </a>
+        <%if book.price%>
+            <a class="book-btn__buy" href="<%= book.price_buy_link%> " target="back" >
+                Buy for <%=book.price%>
+                <img src="/images/buy.svg" alt="buy">
+            </a>
+        <%end%>
     </article>
 </section>
 
