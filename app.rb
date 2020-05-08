@@ -30,8 +30,15 @@ get "/books/:book_id" do
   ""
 end
 
+delete "/books/:book_id" do
+  id = params[:book_id]
+  Book.delete(id)
+  redirect to("/books")
+end
+
 get "/books/:book_id/edit" do
-  book = Book.find(params[:book_id])
+  id = params[:book_id]
+  book = Book.find(id)
   erb :book_edit, locals: { book: book }
 end
 
@@ -41,5 +48,5 @@ put "/books/:book_id/edit" do
   book.status = params[:status]
   book.notes = params[:notes]
   book.save
-  redirect to("/books/#{id}/edit")
+  redirect to("/books")
 end
