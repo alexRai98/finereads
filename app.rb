@@ -24,6 +24,13 @@ get "/books" do
   erb(:books, locals: { books: books })
 end
 
+post "/books" do
+  id = params[:id]
+  status = params[:status]
+  Book.create(id: params[:id], status: status)
+  redirect url("/books/#{id}")
+end
+
 get "/books/:book_id" do
   ""
 end

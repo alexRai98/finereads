@@ -45,3 +45,52 @@
   margin-top: 40px;
   text-align: center;
 }
+
+.search .books{
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 202px);
+  grid-auto-rows: 320px;
+  gap: 12px 40px;
+  justify-content: center;  
+}
+
+.search .books .book{
+  background-color: #D8D8D8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search .books .book img{
+  width: 152px;
+  height: 230px;
+  margin-top: 16px;
+}
+
+.search .books .book .want_read{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFFFFF;
+  background-color: #38A169;
+  border-radius: 0px;
+  padding: 7px 15px;
+  margin-top: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.search .books .book .read{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  background-color: transparent;
+  cursor: pointer;
+
+  color: #2B6CB0;
+  margin-top: 8px;
+  border: none;
+}
