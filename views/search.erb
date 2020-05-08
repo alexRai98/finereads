@@ -1,8 +1,13 @@
 <section class="search">
-  <h1>Find your next book to read</h1>
+  <h1>Find your next book to read</h1> 
   <form class="form" action="/search" method="get">
-    <input class="input" type="text" name="query" id="query" placeholder="Search a book..." value="<%= query %>">
+    <select name="specific" id="">
+      <% @specific_options.each do |k, v| %>
+        <option value="<%= k %>" <%= "selected " if k==@specific %>><%= v%></option>
+      <% end %>
+    </select>
+    <input class="input" type="text" name="query" id="query" placeholder="Search a book..." value="<%= @query %>">
     <button class="submit" type="submit"></button>
   </form>
-  <%= render_books_in_search_page(books, more: more) %>
+  <%= render_books_in_search_page(@books, more: @more) %>
 </section>
