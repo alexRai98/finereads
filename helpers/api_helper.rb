@@ -7,7 +7,7 @@ module ApiHelper
   BASE_URL = "https://www.googleapis.com/books/v1"
   BOOK_PER_PAGES = 40 #Max 40
 
-  def get_books(text, count: 8)
+  def get_books(text, count:)
     result = (count/BOOK_PER_PAGES.to_f)
       .ceil
       .times
