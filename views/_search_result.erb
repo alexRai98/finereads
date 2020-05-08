@@ -14,11 +14,10 @@
           <input class="read" type="submit" value="Mark as Read">
         </form>
       <% else %>
-        <div class="status">
+        <a class="status" href="/books/<%= book["id"] %>">
           <p><%= book["my_book_status"].capitalize %></p>
           <img src="/images/check.svg" alt="">
-        </div>
-        <a class="see_my_book" href="/books/<%= book["id"] %>">See my book</a>
+        </a>
       <% end %>
     </div>
   <% end %>
