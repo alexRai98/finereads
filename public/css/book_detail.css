@@ -2,12 +2,12 @@
     display: grid;
     grid-template-columns: 153px 1fr 1fr;
     grid-template-areas: "img information";
+    grid-gap: 10px;
     margin: 47px 0px 421px 0px;
 }
 .book__img{
     grid-area: img;
 }
-
 .book-information{
     grid-area: information;
     display: flex;
@@ -80,4 +80,20 @@
     border: 1px #718096 solid;
     padding: 8px 12px;
     margin-bottom: 9px;
+}
+.detail-book__figure {
+  margin: 0;
+}
+.detail-book__status {
+  color: #4A5568;
+  font-size: 12px;
+  line-height: 16px;
+}
+.detail-book__figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail-book__image {
+  width: 100%;
 }
