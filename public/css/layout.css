@@ -27,6 +27,7 @@ a{
     min-height: 100%;
     display: grid;
     grid-template-rows: max-content 1fr max-content;
+    padding: 0px 10px;
 }
 .navbar{
     display: flex;
@@ -39,6 +40,7 @@ a{
     font-size: 30px;
     font-weight: 200;
     margin-top: 13px;
+    color: #000000;
 }
 .navbar-menu{
     display: flex;
