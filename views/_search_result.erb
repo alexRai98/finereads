@@ -1,17 +1,31 @@
 <div class="books">
   <% books.each do |book| %>
     <div class="book">
-      <img src="<%= book['volumeInfo']['imageLinks']['thumbnail']%>" alt="">
-      <form action="/books" method="post">
-        <input type="hidden" name="id" value="<%= book["id"] %>">
-        <input type="hidden" name="status" value="want_to_read">
-        <input class="want_read" type="submit" value="Want to Read">
-      </form>
-      <form action="/books" method="post">
-        <input type="hidden" name="id" value="<%= book["id"] %>">
-        <input type="hidden" name="status" value="read">
-        <input class="read" type="submit" value="Mark as Read">
-      </form>
+      <% if !book['volumeInfo']['imageLinks'].nil?%>
+        <img class="thumbnail" src="<%= book['volumeInfo']['imageLinks']['thumbnail']%>" alt="">
+      <% else %>
+        <img class="thumbnail" src="/images/no_cover_thumb.png" alt="">
+      <% end %>
+      <% if book["my_book_status"].nil? %>
+        <form action="/books" method="post">
+          <input type="hidden" name="id" value="<%= book["id"] %>">
+          <input type="hidden" name="status" value="want to read">
+          <input class="want_read" type="submit" value="Want to Read">
+        </form>
+        <form action="/books" method="post">
+          <input type="hidden" name="id" value="<%= book["id"] %>">
+          <input type="hidden" name="status" value="read">
+          <input class="read" type="submit" value="Mark as Read">
+        </form>
+      <% else %>
+        <a class="status" href="/books/<%= book["id"] %>">
+          <p><%= book["my_book_status"].capitalize %></p>
+          <img src="/images/check.svg" alt="">
+        </a>
+      <% end %>
     </div>
   <% end %>
 </div>
+<% if !more %>
+  <a class="load-more" href="<%= url_with_updated_params("/search", params: params, updating: {"more" => "true"} )%>">Load more</a>
+<% end %>

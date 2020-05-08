@@ -19,8 +19,14 @@ end
 
 get "/search" do #recibe el get request con query parameters - form
   query = params[:query]
-  books = (query.nil? || query=="") ? nil : get_books(query)
-  erb :search, locals: {books: books, query: query}
+  #specific = process_param(params[:specific], avaliable_options: ["all", "intitle", "inauthor"])
+  more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
+  count = more ? 48 : 8
+
+  my_books = Book.all
+  books = process_param(query) {|query_option| mark_my_books(get_books(query_option, count: count), my_books)}
+
+  erb :search, locals: {books: books, query: query, more: more}
 end
 
 get "/books" do
