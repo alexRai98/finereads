@@ -1,7 +1,7 @@
 <section class="search">
   <h1>Find your next book to read</h1>
   <form class="form" action="/search" method="get">
-    <input class="input" type="text" name="query" id="query" placeholder="Search a book...">
+    <input class="input" type="text" name="query" id="query" placeholder="Search a book..." value="<%= query %>">
     <button class="submit" type="submit"></button>
   </form>
   <%= render_books_in_search_page(books) %>

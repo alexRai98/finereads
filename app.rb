@@ -14,9 +14,9 @@ get "/" do
 end
 
 get "/search" do #recibe el get request con query parameters - form
-  p query = params[:query]
+  query = params[:query]
   books = (query.nil? || query=="") ? nil : get_books(query)
-  erb :search, locals: {books: books}
+  erb :search, locals: {books: books, query: query}
 end
 
 get "/books" do

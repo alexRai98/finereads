@@ -48,9 +48,10 @@
 
 .search .books{
   margin-top: 40px;
+  margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(4, 202px);
-  grid-auto-rows: 320px;
+  grid-auto-rows: 326px;
   gap: 12px 40px;
   justify-content: center;  
 }
