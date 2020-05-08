@@ -1,12 +1,14 @@
 # myapp.rb
+require "json"
 require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "models/book"
 require_relative "helpers/api_helper"
+require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
-require "json"
 
 helpers ApiHelper
+helpers EditHelper
 helpers SearchHelper
 
 get "/" do
@@ -34,5 +36,10 @@ get "/books/:book_id/edit" do
 end
 
 put "/books/:book_id/edit" do
-  ""
+  id = params[:book_id]
+  book = Book.find(id)
+  book.status = params[:status]
+  book.notes = params[:notes]
+  book.save
+  redirect to("/books/#{id}/edit")
 end
