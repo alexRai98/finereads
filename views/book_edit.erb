@@ -1,0 +1,12 @@
+<div class="edit-page">
+  <% if book %>
+    <div><%= book.title %></div>
+    <div>
+      <img src="<%= book.img_url %>" alt="book">
+    </div>
+    <div><%= book.authors.join(", ") %></div>
+    <div><%= book.description %></div>
+  <% else %>
+    <p>Book not found.</p>
+  <% end %>
+</div>

@@ -25,4 +25,8 @@ class Book < LazyRecord
   def authors
     @external_book['volumeInfo']['authors']
   end
+
+  def description
+    @external_book['volumeInfo']['description']
+  end
 end

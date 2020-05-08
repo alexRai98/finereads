@@ -5,11 +5,23 @@
 .books-page__title {
   margin-bottom: 15px;
   font-size: 36px;
+  font-weight: normal;
   line-height: 49px;
   color: #000000;
 }
 .books-table {
   border-collapse: collapse;
+}
+.books-table__row th,
+.books-table__row td {
+  padding: 20px 5px;
+  border-bottom: 1px solid rgba(113, 128, 150, 0.8);
+  text-align: left;
+}
+.books-table__heading {
+  color: #000000;
+  font-size: 14px;
+  line-height: 19px;
 }
 .books-table__heading:first-child {
   width: 15%;
@@ -27,9 +39,17 @@
 .books-table__heading:last-child {
   width: 5%;
 }
-.books-table__row th,
-.books-table__row td {
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(113, 128, 150, 0.8);
-  text-align: center;
+.books-table__book-data {
+  color: #1A202C;
+  font-size: 12px;
+  line-height: 16px;
+}
+.books-table__book-image {
+  max-width: 70px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+.books-table__book-title {
+  color: #ED8936;
+  font-size: 14px;
+  line-height: 19px;
 }

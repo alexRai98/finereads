@@ -21,7 +21,7 @@ end
 
 get "/books" do
   books = Book.all
-  erb(:books, locals: { books: books })
+  erb :books, locals: { books: books }
 end
 
 get "/books/:book_id" do
@@ -29,7 +29,8 @@ get "/books/:book_id" do
 end
 
 get "/books/:book_id/edit" do
-  ""
+  book = Book.find(params[:book_id])
+  erb :book_edit, locals: { book: book }
 end
 
 put "/books/:book_id/edit" do
