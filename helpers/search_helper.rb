@@ -17,6 +17,7 @@ module SearchHelper
   end
 
   def mark_my_books(books, my_books)
+    return nil if books == []
     books.map do |book|
       my_book = my_books.find {|my_book| my_book.id == book["id"]}
       if my_book.nil?
