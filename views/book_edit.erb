@@ -1,23 +1,18 @@
-<div class="edit-page">
+<form method="POST" action="/books/<%= book.id %>/edit" class="detail-book">
   <% if book %>
-    <figure class="edit-page__figure">
-      <img src="<%= book.img_url %>" alt="book">
-    </figure>
-
-    <div class="book-info">
-      <div class="book-info__title"><%= book.title %></div>
-      <div class="book-info__authors">by <%= book.authors.join(", ") %></div>
-
-      <form method="POST" action="/books/<%= book.id %>/edit" class="edit-page__form">
-        <input type="hidden" name="_method" value="PUT">
-        <label class="form-control" for="edit-form-status">Reading Status</label>
-        <%= show_select(book.status) %>
-        <label class="form-control" for="edit-form-notes">Notes</label>
-        <textarea class="form-control" name="notes" id="edit-form-notes" rows="10"><%= book.notes %></textarea>
-        <button class="form-submit">Save</button>
-      </form>
-    </div>
+    <img class="book__img" src=" <%= book.img_url%>" alt="">
+    <article class="book-information"> 
+        <h1 class="book__title"><%= book.title%> </h1>
+        <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+          <span class="book__sections">Reading status</span>
+          <%= show_select(book.status) %>
+          <span class="book__sections">Notes</span>
+          <textarea class="book__notes" name="notes" cols="30" rows="10"><%= book.notes%></textarea>
+          <input type="hidden" name="_method" value="PUT">
+          <button class="book-btn__buy" type="sutmid">Save</button>
+    </article>
   <% else %>
     <p>Book not found.</p>
   <% end %>
-</div>
+</form>
+

@@ -42,7 +42,7 @@
   width: 7%;
 }
 .books-table__book-data {
-  color: #1A202C;
+  color: #4A5568;
   font-size: 12px;
   line-height: 16px;
 }
@@ -50,10 +50,13 @@
   max-width: 70px;
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
-.books-table__book-title {
+.books-table__book-title a{
+  color: #4A5568;
+  font-size: 14px;
+}
+.books-table__book-title a:hover{
   color: #ED8936;
   font-size: 14px;
-  line-height: 19px;
 }
 .books-table__delete-form {
   display: inline-block;
@@ -66,84 +69,4 @@
 }
 .books-table__delete-button:hover {
   cursor: pointer;
-}
-/* EDIT PAGE */
-.edit-page {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  padding: 60px 15px;
-}
-.edit-page__figure {
-  width: 20%;
-  margin: 0;
-}
-.book-info {
-  width: 75%;
-}
-.book-info__title {
-  margin-bottom: 10px;
-  color: #1A202C;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 27px;
-}
-.book-info__authors {
-  margin-bottom: 30px;
-  color: #4A5568;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-}
-.edit-page__form {
-  display: flex;
-  flex-direction: column;
-}
-.form-control {
-  display: block;
-  margin-bottom: 10px;
-  font-family: "Nunito";
-}
-select.form-control {
-  padding: 5px 10px;
-  background-color: #EDF2F7;
-  background-image: url('/images/down_arrow.png');
-  background-position: 98%;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  appearance:none;
-	-webkit-appearance:none;
-	-moz-appearance:none;
-	-ms-appearance:none;
-  color: #1A202C;
-  font-size: 16px;
-  line-height: 22px;
-}
-textarea.form-control {
-  padding: 10px 20px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  font-size: 16px;
-  line-height: 22px;
-  resize: none;
-}
-label.form-control {
-  color: #4A5568;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  text-transform: uppercase;
-}
-.form-submit {
-  background-color: #9AE6B4;
-  align-self: flex-end;
-  padding: 8px 25px;
-  border: 0;
-  color: #1A202C;
-  font-family: "Nunito";
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 25px;
-  text-align: center;
 }
