@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+/* BOOKS PAGE */
+.books-page {
+  font-family: "Nunito";
+}
+.books-page__title {
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 49px;
+  color: #000000;
+}
+.books-table {
+  border-collapse: collapse;
+}
+.books-table__row th,
+.books-table__row td {
+  padding: 20px 5px;
+  border-bottom: 1px solid rgba(113, 128, 150, 0.8);
+  text-align: left;
+}
+.books-table__heading {
+  color: #000000;
+  font-size: 14px;
+  line-height: 19px;
+}
+.books-table__heading:first-child {
+  width: 15%;
+}
+.books-table__heading:nth-child(2) {
+  width: 30%;
+}
+.books-table__heading:nth-child(3) {
+  width: 20%;
+}
+.books-table__heading:nth-child(4),
+.books-table__heading:nth-child(5) {
+  width: 14%;
+}
+.books-table__heading:last-child {
+  width: 7%;
+}
+.books-table__book-data {
+  color: #4A5568;
+  font-size: 12px;
+  line-height: 16px;
+}
+.books-table__book-image {
+  max-width: 70px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+.books-table__book-title a{
+  color: #4A5568;
+  font-size: 14px;
+}
+.books-table__book-title a:hover{
+  color: #ED8936;
+  font-size: 14px;
+}
+.books-table__delete-form {
+  display: inline-block;
+}
+.books-table__delete-button {
+  display: inline-block;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 0;
+}
+.books-table__delete-button:hover {
+  cursor: pointer;
+}
