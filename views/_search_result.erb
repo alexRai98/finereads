@@ -1,11 +1,13 @@
 <div class="books">
   <% books.each do |book| %>
     <div class="book">
-      <% if !book['volumeInfo']['imageLinks'].nil?%>
-        <img class="thumbnail" src="<%= book['volumeInfo']['imageLinks']['thumbnail']%>" alt="">
-      <% else %>
-        <img class="thumbnail" src="/images/no_cover_thumb.png" alt="">
-      <% end %>
+      <a class="see_book" href="/books/<%= book["id"] %>">
+        <% if !book['volumeInfo']['imageLinks'].nil?%>
+          <img class="thumbnail" src="<%= book['volumeInfo']['imageLinks']['thumbnail']%>" alt="">
+        <% else %>
+          <img class="thumbnail" src="/images/no_cover_thumb.png" alt="">
+        <% end %>
+      </a>
       <% if book["my_book_status"].nil? %>
         <form action="/books" method="post">
           <input type="hidden" name="id" value="<%= book["id"] %>">
