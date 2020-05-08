@@ -26,17 +26,11 @@ get "/search" do #recibe el get request con query parameters - form
   count = @more ? 48 : 8
 
   my_books = Book.all
-<<<<<<< HEAD
-  @books = process_param(query) {|query_option| mark_my_books(get_books(query_option, count: count), my_books)}
-
-  erb :search, locals: {books: @books, query: query, more: more}
-=======
   @query = params[:query]
   @books = process_param(@query) do |query_option| 
     mark_my_books(get_books(query_option, count: count, specific: @specific), my_books)
   end
   erb :search
->>>>>>> 40abd1a0a57d6d23e3ede32d14211ca21d4dcc24
 end
 
 get "/books" do
@@ -55,15 +49,12 @@ post "/books" do
   status = params[:status]
   Book.create(id: params[:id], status: status)
   redirect url("/books/#{id}/edit")
-<<<<<<< HEAD
 end
 post "/books/add_detail" do
   id = params[:id]
   status = params[:status]
   Book.create(id: params[:id], status: status)
   redirect url("/books")
-=======
->>>>>>> 40abd1a0a57d6d23e3ede32d14211ca21d4dcc24
 end
 
 get "/books/:book_id/edit" do
