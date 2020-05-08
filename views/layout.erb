@@ -37,6 +37,21 @@
             </a>
         </footer>
     </main>
+<script>
+  function getNearestParentForm(node) {
+    if (node.tagName === "FORM" || node === null) {
+      return node;
+    }
 
+    return getNearestParentForm(node.parentElement);
+  }
+
+  document.querySelectorAll(".js-autosubmit-form").forEach(node => {
+    node.addEventListener("change", () => {
+      const form = getNearestParentForm(node);
+      form.submit()
+    });
+  });
+</script>
 </body>
 </html>
