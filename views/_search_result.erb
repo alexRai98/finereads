@@ -29,5 +29,5 @@
   <% end %>
 </div>
 <% if !more %>
-  <a class="load-more" href="<%= url_with_updated_params("/search", params: params, updating: {"more" => "true"} )%>">Load more</a>
+  <a class="load-more" href="<%= url_with_updated_params("/search", parameters: params, updating: {"more" => "true"} )%>">Load more</a>
 <% end %>

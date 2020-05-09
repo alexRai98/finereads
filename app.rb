@@ -19,16 +19,20 @@ end
 
 get "/search" do #recibe el get request con query parameters - form
   @specific_options = {"all" => "All", "subject" => "In subject", "intitle" => "In Title", "inauthor" => "In Author", "inpublisher" => "In Publisher", "isbn" => "Is ISBN"}
-  @specific = process_param(params[:specific], avaliable_options: @specific_options.keys)
+  @specific = process_param(params[:specific], avaliable_options: @specific_options.keys, default: "all")
   
   @more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
   count = @more ? 48 : 8
 
+  @sort_options = ["relevance", "newest"]
+  @sort = process_param(params[:sort], avaliable_options: @sort_options, default: "relevance")
+
   my_books = Book.all
   @query = params[:query]
   @books = process_param(@query) do |query_option| 
-    mark_my_books(get_books(query_option, count: count, specific: @specific), my_books)
+    mark_my_books(get_books(query_option, count: count, specific: @specific, sort: @sort), my_books)
   end
+
   erb :search
 end
 
