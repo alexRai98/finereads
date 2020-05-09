@@ -20,21 +20,29 @@ end
 get "/search" do #recibe el get request con query parameters - form
   @specific_options = {"all" => "All", "subject" => "In subject", "intitle" => "In Title", "inauthor" => "In Author", "inpublisher" => "In Publisher", "isbn" => "Is ISBN"}
   @specific = process_param(params[:specific], avaliable_options: @specific_options.keys)
-  
+
   @more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
   count = @more ? 48 : 8
 
   my_books = Book.all
   @query = params[:query]
-  @books = process_param(@query) do |query_option| 
+  @books = process_param(@query) do |query_option|
     mark_my_books(get_books(query_option, count: count, specific: @specific), my_books)
   end
   erb :search
 end
 
 get "/books" do
+  filter = params[:filter] ? params[:filter] : "all"
+  selected = {}
+  selected[filter] = "selected"
   books = Book.all
-  erb :books, locals: { books: books }
+
+  if filter == "want to read" || filter == "reading" || filter == "read"
+    books = books.select { |book| book.status == filter }
+  end
+
+  erb :books, locals: { books: books, selected: selected }
 end
 
 delete "/books/:book_id" do
@@ -66,12 +74,12 @@ put "/books/:book_id/edit" do
 end
 
 
-get "/books/:id" do 
+get "/books/:id" do
   @book = Book.find(params[:id])
   erb :book_detail, locals: { book: @book}
 end
 
-delete "/books/:id" do 
+delete "/books/:id" do
   @book = Book.delete(params[:id])
   redirect url("/books")
 end

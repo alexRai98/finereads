@@ -1,6 +1,14 @@
 <main class="books-page">
   <h1 class="books-page__title">My Books</h1>
 
+  <form class="books-page__form" method="GET" action="/books">
+    <select class="books-page__select" name="filter" id="" onchange="this.form.submit()">
+      <option <%= selected['all'] %> value="all">All</option>
+      <option <%= selected['want to read'] %> value="want to read">Want to read</option>
+      <option <%= selected['reading'] %> value="reading">Reading</option>
+      <option <%= selected['read'] %> value="read">Read</option>
+    </select>
+  </form>
   <% if books.empty? %>
     <p>There are no books stored.</p>
   <% else %>
@@ -22,9 +30,9 @@
               <img class="books-table__book-image" src="<%= book.img_url %>" alt="">
             </td>
             <td class="books-table__book-title">
-          
+
               <a type="submit" href="<%= book_details(book)%>"> <%= book.title %> </a>
-        
+
             </td>
             <td class="books-table__book-data">
               <%= book.authors.join(', ') %>
