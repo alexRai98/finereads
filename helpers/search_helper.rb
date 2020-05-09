@@ -1,19 +1,21 @@
 module SearchHelper
 
-  def url_with_updated_params(url, params:, updating:)
-    updating.each{|(k, v)| params[k] = v}
-    query = params.map{|k, v| "#{k}=#{v.gsub(/\s/, '+')}"}.join("&")
+  def url_with_updated_params(url, parameters:, updating:)
+    updating.each{|k, v| parameters[k] = v}
+
+    query = parameters.map{|k, v| "#{k}=#{v.gsub(/\s/, '+')}"}.join("&")
     "#{url}?#{query}"
   end
 
-  def process_param(param, avaliable_options: [])
-    if param.nil? || param == "" || (avaliable_options != [] && !avaliable_options.include?(param))
-      nil
-    elsif block_given?
-      yield(param)
-    else
+  def process_param(param, avaliable_options: [], default: nil)
+    value = if param.nil? || param == ""
+      default
+    elsif avaliable_options == [] || avaliable_options.include?(param)
       param
+    else
+     default
     end
+    block_given?() ? yield(value) : value
   end
 
   def mark_my_books(books, my_books)
