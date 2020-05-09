@@ -58,4 +58,4 @@ build-iPhoneSimulator/
 .idea
 .env
 
-*.pstore
+lazyrecord.pstore

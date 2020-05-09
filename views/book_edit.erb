@@ -3,13 +3,15 @@
     <img class="book__img" src=" <%= book.img_url%>" alt="">
     <article class="book-information"> 
         <h1 class="book__title"><%= book.title%> </h1>
-        <span class="book__author" >by <%=book.authors.join(", ")%> </span>
-          <span class="book__sections">Reading status</span>
-          <%= show_select(book.status) %>
-          <span class="book__sections">Notes</span>
-          <textarea class="book__notes" name="notes" cols="30" rows="10"><%= book.notes%></textarea>
-          <input type="hidden" name="_method" value="PUT">
-          <button class="book-btn__buy" type="sutmid">Save</button>
+        <%if book.authors%>
+          <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+        <%end%>
+        <span class="book__sections">Reading status</span>
+        <%= show_select(book.status) %>
+        <span class="book__sections">Notes</span>
+        <textarea class="book__notes" name="notes" cols="30" rows="10"><%= book.notes%></textarea>
+        <input type="hidden" name="_method" value="PUT">
+        <button class="book-btn__buy" type="sutmid">Save</button>
     </article>
   <% else %>
     <p>Book not found.</p>

@@ -9,5 +9,14 @@
     <input class="input" type="text" name="query" id="query" placeholder="Search a book..." value="<%= @query %>">
     <button class="submit" type="submit"></button>
   </form>
+  <div class="sort">
+    <p><%= @sort.capitalize %></p>
+    <img src="/images/down.svg" alt="">
+    <ul class="options">
+      <% @sort_options.each do |sort_option| %>
+        <li><a href="<%= @sort == sort_option ? "#" : url_with_updated_params("/search", parameters: params.clone, updating: {"sort" => sort_option} ) %>"><%= sort_option.capitalize %></a></li>
+      <% end %>
+    </ul>
+  </div>
   <%= render_books_in_search_page(@books, more: @more) %>
 </section>

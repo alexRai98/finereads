@@ -1,0 +1,10 @@
+<form action="/books/add_detail" method="post">
+    <input type="hidden" name="id" value="<%= book.id %>">
+    <input type="hidden" name="status" value="want to read">
+    <input class="want_read" type="submit" value="Want to Read">
+</form>
+<form action="/books/add_detail" method="post">
+    <input type="hidden" name="id" value="<%= book.id %>">
+    <input type="hidden" name="status" value="read">
+    <input class="read" type="submit" value="Mark as Read">
+</form>

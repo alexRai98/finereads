@@ -1,0 +1,21 @@
+  <figcaption class="detail-book__figcaption">
+    <div class="detail-book__status">
+    <%= book.status.capitalize %>
+    <% if book.status == "read" %>
+        <img src="/images/check.png" alt="read book">
+    <% end %>
+    </div>
+
+    <div class="detail-book__buttons">
+    <a href="/books/<%= book.id %>/edit">
+        <img src="/images/edit.png" alt="edit book">
+    </a>
+
+    <form class="books-table__delete-form" method="POST" action="<%=book_delete(book)%>">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="books-table__delete-button" type="submit">
+        <img src="/images/delete.png" alt="delete book">
+        </button>
+    </form>
+    </div>
+</figcaption>

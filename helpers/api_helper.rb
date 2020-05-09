@@ -7,7 +7,7 @@ module ApiHelper
   BASE_URL = "https://www.googleapis.com/books/v1"
   BOOK_PER_PAGES = 40 #Max 40
 
-  def get_books(text, count:, specific:)
+  def get_books(text, count:, specific:, sort:)
     result = (count/BOOK_PER_PAGES.to_f)
       .ceil
       .times
@@ -16,7 +16,7 @@ module ApiHelper
         q = (specific == nil || specific == "all") ? text : "#{specific}:#{text}"
         response = JSON.parse(
           HTTP.headers(:accept => "application/json")
-            .get("#{BASE_URL}/volumes", :params => {:q => q, :startIndex => index, :maxResults => num_books})
+            .get("#{BASE_URL}/volumes", :params => {:q => q, :startIndex => index, :maxResults => num_books, :orderBy => sort})
             .body
         )
         [resp + Array(response["items"]), remaining - num_books]

@@ -1,32 +1,18 @@
 <section class="detail-book">
     <figure class="detail-book__figure book_img">
       <img class="detail-book__image" src="<%= book.img_url%>" alt="">
-      <figcaption class="detail-book__figcaption">
-        <div class="detail-book__status">
-          <%= book.status.capitalize %>
-          <% if book.status == "read" %>
-            <img src="/images/check.png" alt="read book">
-          <% end %>
-        </div>
-
-        <div class="detail-book__buttons">
-          <a href="/books/<%= book.id %>/edit">
-            <img src="/images/edit.png" alt="edit book">
-          </a>
-
-          <form class="books-table__delete-form" method="POST" action="<%=book_delete(book)%>">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="books-table__delete-button" type="submit">
-              <img src="/images/delete.png" alt="delete book">
-            </button>
-          </form>
-        </div>
-      </figcaption>
+      <%if find %>
+        <%= refactor_detail_figcaption(book) %>
+      <%else%>
+        <%= refactor_detail_btn_add_list(book) %>
+      <%end%>
     </figure>
 
     <article class="book-information">
         <h1 class="book__title"><%= book.title%> </h1>
-        <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+        <%if book.authors%>
+          <span class="book__author" >by <%=book.authors.join(", ")%> </span>
+        <%end%>
         <p class="book__description"><%=book.description%> </p>
         <%if book.price%>
             <a class="book-btn__buy" href="<%= book.price_buy_link%> " target="back" >

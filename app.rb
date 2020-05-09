@@ -4,13 +4,14 @@ require "sinatra"
 require "sinatra/reloader" if development?
 require_relative "models/book"
 require_relative "helpers/api_helper"
-require_relative "helpers/edit_helper"
 require_relative "helpers/search_helper"
 require_relative "helpers/book_helper"
+require_relative "helpers/detail_helper"
 
 helpers ApiHelper
 helpers SearchHelper
 helpers BookHelper
+helpers DetailHelper
 
 use Rack::MethodOverride
 get "/" do
@@ -19,16 +20,20 @@ end
 
 get "/search" do #recibe el get request con query parameters - form
   @specific_options = {"all" => "All", "subject" => "In subject", "intitle" => "In Title", "inauthor" => "In Author", "inpublisher" => "In Publisher", "isbn" => "Is ISBN"}
-  @specific = process_param(params[:specific], avaliable_options: @specific_options.keys)
+  @specific = process_param(params[:specific], avaliable_options: @specific_options.keys, default: "all")
 
   @more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
   count = @more ? 48 : 8
 
+  @sort_options = ["relevance", "newest"]
+  @sort = process_param(params[:sort], avaliable_options: @sort_options, default: "relevance")
+
   my_books = Book.all
   @query = params[:query]
-  @books = process_param(@query) do |query_option|
-    mark_my_books(get_books(query_option, count: count, specific: @specific), my_books)
+  @books = process_param(@query) do |query_option| 
+    mark_my_books(get_books(query_option, count: count, specific: @specific, sort: @sort), my_books)
   end
+
   erb :search
 end
 
@@ -58,6 +63,13 @@ post "/books" do
   redirect url("/books/#{id}/edit")
 end
 
+post "/books/add_detail" do
+  id = params[:id]
+  status = params[:status]
+  Book.create(id: params[:id], status: status)
+  redirect url("/books")
+end
+
 get "/books/:book_id/edit" do
   id = params[:book_id]
   book = Book.find(id)
@@ -73,13 +85,12 @@ put "/books/:book_id/edit" do
   redirect to("/books")
 end
 
-
-get "/books/:id" do
-  @book = Book.find(params[:id])
-  erb :book_detail, locals: { book: @book}
-end
-
-delete "/books/:id" do
-  @book = Book.delete(params[:id])
-  redirect url("/books")
+get "/books/:id" do 
+  book = Book.find(params[:id])
+  if book
+    erb :book_detail, locals: { book: book, find: true }
+  else
+    book = Book.new(id: params[:id], status: nil)
+    erb :book_detail, locals: { book: book, find: false }
+  end
 end
