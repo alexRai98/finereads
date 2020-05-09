@@ -21,7 +21,7 @@ end
 get "/search" do #recibe el get request con query parameters - form
   @specific_options = {"all" => "All", "subject" => "In subject", "intitle" => "In Title", "inauthor" => "In Author", "inpublisher" => "In Publisher", "isbn" => "Is ISBN"}
   @specific = process_param(params[:specific], avaliable_options: @specific_options.keys, default: "all")
-  
+
   @more = process_param(params[:more], avaliable_options: ["true", "false"]){ |more_option| more_option == "true"}
   count = @more ? 48 : 8
 
@@ -38,8 +38,16 @@ get "/search" do #recibe el get request con query parameters - form
 end
 
 get "/books" do
+  filter = params[:filter] ? params[:filter] : "all"
+  selected = {}
+  selected[filter] = "selected"
   books = Book.all
-  erb :books, locals: { books: books }
+
+  if filter == "want to read" || filter == "reading" || filter == "read"
+    books = books.select { |book| book.status == filter }
+  end
+
+  erb :books, locals: { books: books, selected: selected }
 end
 
 delete "/books/:book_id" do
@@ -54,6 +62,7 @@ post "/books" do
   Book.create(id: params[:id], status: status)
   redirect url("/books/#{id}/edit")
 end
+
 post "/books/add_detail" do
   id = params[:id]
   status = params[:status]
@@ -76,15 +85,12 @@ put "/books/:book_id/edit" do
   redirect to("/books")
 end
 
-
 get "/books/:id" do 
   book = Book.find(params[:id])
   if book
-    erb :book_detail, locals: { book: book, find: true}
+    erb :book_detail, locals: { book: book, find: true }
   else
-    book = Book.new(id: params[:id],status: nil)
-    erb :book_detail, locals: {book: book,find: false}
+    book = Book.new(id: params[:id], status: nil)
+    erb :book_detail, locals: { book: book, find: false }
   end
 end
-
-
